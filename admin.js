@@ -32,6 +32,16 @@ function saveWordData(data) {
   localStorage.setItem("hw_word_data", JSON.stringify(data));
 }
 
+function loadFromServer() {
+  return fetch("data.json?" + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      saveWordData(data);
+      return data;
+    })
+    .catch(function() { return getWordData(); });
+}
+
 // --- Login ---
 
 document.getElementById("passwordInput").addEventListener("keydown", function(e) {
@@ -46,7 +56,7 @@ function tryLogin() {
     sessionStorage.setItem("hw_admin_auth", "true");
     document.getElementById("loginScreen").style.display = "none";
     document.getElementById("adminPanel").style.display = "block";
-    renderWords();
+    loadFromServer().then(function() { renderWords(); });
   } else {
     error.textContent = "Incorrect password. Try again.";
     document.getElementById("passwordInput").value = "";
@@ -66,7 +76,7 @@ function logout() {
 if (sessionStorage.getItem("hw_admin_auth") === "true") {
   document.getElementById("loginScreen").style.display = "none";
   document.getElementById("adminPanel").style.display = "block";
-  renderWords();
+  loadFromServer().then(function() { renderWords(); });
 }
 
 // --- Render word cards ---
@@ -105,19 +115,36 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
-// --- Save ---
-function saveAll() {
+// --- Collect current form data ---
+function collectData() {
   const data = {};
   HIDDEN_WORDS.forEach((item, i) => {
     const textarea = document.getElementById("input_" + i);
     data[item.word] = textarea.value;
   });
+  return data;
+}
+
+// --- Save & Download data.json ---
+function saveAll() {
+  const data = collectData();
   saveWordData(data);
 
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json + "\n"], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "data.json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
   const status = document.getElementById("saveStatus");
-  status.textContent = "\u2713 Changes saved!";
+  status.textContent = "\u2713 data.json downloaded! Replace the file in your project and push to GitHub.";
   status.classList.add("show");
-  setTimeout(() => { status.classList.remove("show"); }, 2500);
+  setTimeout(() => { status.classList.remove("show"); }, 5000);
 }
 
 // --- Section switching ---
@@ -133,7 +160,7 @@ function showSection(name) {
 function changePassword() {
   const current = document.getElementById("currentPass").value;
   const newP = document.getElementById("newPass").value;
-  const confirm = document.getElementById("confirmPass").value;
+  const conf = document.getElementById("confirmPass").value;
   const status = document.getElementById("passStatus");
 
   if (current !== getPassword()) {
@@ -152,7 +179,7 @@ function changePassword() {
     return;
   }
 
-  if (newP !== confirm) {
+  if (newP !== conf) {
     status.textContent = "\u2717 Passwords do not match.";
     status.style.color = "#e74c3c";
     status.classList.add("show");
@@ -181,8 +208,8 @@ function resetAll() {
     renderWords();
 
     const status = document.getElementById("saveStatus");
-    status.textContent = "\u2713 All data has been reset.";
+    status.textContent = "\u2713 All data has been reset. Don't forget to Save & Download.";
     status.classList.add("show");
-    setTimeout(() => { status.classList.remove("show"); }, 2500);
+    setTimeout(() => { status.classList.remove("show"); }, 3000);
   }
 }

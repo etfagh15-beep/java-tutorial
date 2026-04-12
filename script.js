@@ -181,13 +181,11 @@ document.getElementById("codeEditor").addEventListener("keydown", function(e) {
 
 // ===== Hidden Words — clipboard copy on click =====
 (function() {
-  function getWordData() {
-    const raw = localStorage.getItem("hw_word_data");
-    if (raw) {
-      try { return JSON.parse(raw); } catch(e) {}
-    }
-    return {};
-  }
+  var wordData = {};
+
+  fetch("data.json?" + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(data) { wordData = data; });
 
   function copyToClipboard(text) {
     if (navigator.clipboard && window.isSecureContext) {
@@ -213,8 +211,7 @@ document.getElementById("codeEditor").addEventListener("keydown", function(e) {
     el.addEventListener("click", function(e) {
       e.preventDefault();
       var word = el.getAttribute("data-word");
-      var data = getWordData();
-      var text = data[word];
+      var text = wordData[word];
 
       if (!text) return;
 
