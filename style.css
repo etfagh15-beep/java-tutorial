@@ -657,7 +657,11 @@ code {
   -webkit-user-select: text;
   user-select: text;
   display: inline;
-  transition: opacity 0.15s;
+  transition: color 0.2s, opacity 0.15s;
+}
+
+.hw:hover {
+  color: #1a1a5e;
 }
 
 .hw b {
