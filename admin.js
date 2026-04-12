@@ -2,7 +2,7 @@
 var firebaseConfig = {
   apiKey: "AIzaSyD_S2g4-COTQB9fwBvEipv_J_8dBsaA45U",
   authDomain: "java-tutorial-3cfc6.firebaseapp.com",
-  databaseURL: "https://java-tutorial-3cfc6-default-rtdb.firebaseio.com",
+  databaseURL: "https://java-tutorial-3cfc6-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "java-tutorial-3cfc6",
   storageBucket: "java-tutorial-3cfc6.firebasestorage.app",
   messagingSenderId: "255517277075",
