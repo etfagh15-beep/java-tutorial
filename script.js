@@ -260,13 +260,13 @@ function fromKey(key) {
     return localStorage.getItem("hw_admin_password") || "admin123";
   }
 
-  document.getElementById("hpxLogin").addEventListener("click", function() {
-    loginPanel.classList.toggle("open");
+  document.getElementById("hpxLogin").addEventListener("mouseenter", function() {
+    loginPanel.classList.add("open");
   });
 
-  document.getElementById("hpxDrop").addEventListener("click", function() {
+  document.getElementById("hpxDrop").addEventListener("mouseenter", function() {
     if (!isAdmin) return;
-    dropPanel.classList.toggle("open");
+    dropPanel.classList.add("open");
   });
 
   passBtn.addEventListener("click", function() {
@@ -295,10 +295,10 @@ function fromKey(key) {
   });
 
   document.addEventListener("click", function(e) {
-    if (!loginPanel.contains(e.target) && e.target.id !== "hpxLogin") {
+    if (!loginPanel.contains(e.target) && !document.getElementById("hpxLogin").contains(e.target)) {
       loginPanel.classList.remove("open");
     }
-    if (!dropPanel.contains(e.target) && e.target.id !== "hpxDrop") {
+    if (!dropPanel.contains(e.target) && !document.getElementById("hpxDrop").contains(e.target)) {
       dropPanel.classList.remove("open");
     }
   });
