@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- Login Screen -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="login-icon">&#128274;</div>
+      <h1>Admin Panel</h1>
+      <p>Enter password to access the control panel</p>
+    </div>
+    <div class="login-form">
+      <input type="password" id="passwordInput" placeholder="Password" autocomplete="off">
+      <div class="error-msg" id="errorMsg"></div>
+      <button class="btn-login" onclick="tryLogin()">Log In</button>
+    </div>
+    <a href="index.html" class="back-link">&larr; Back to site</a>
+  </div>
+</div>
+
+<!-- Admin Panel -->
+<div class="admin-panel" id="adminPanel" style="display:none;">
+  <div class="admin-topbar">
+    <div class="admin-topbar-left">
+      <span class="admin-logo">&#9881; Admin Panel</span>
+    </div>
+    <div class="admin-topbar-right">
+      <a href="index.html" class="btn-back">&larr; Back to site</a>
+      <button class="btn-logout" onclick="logout()">Log Out</button>
+    </div>
+  </div>
+
+  <div class="admin-body">
+    <div class="admin-sidebar">
+      <h3>Navigation</h3>
+      <a href="#" class="admin-nav-link active" onclick="showSection('words')">Hidden Words</a>
+      <a href="#" class="admin-nav-link" onclick="showSection('settings')">Settings</a>
+    </div>
+
+    <div class="admin-content">
+      <!-- Hidden Words Section -->
+      <div class="admin-section" id="sectionWords">
+        <div class="section-header">
+          <h2>Hidden Clickable Words</h2>
+          <p>Assign clipboard text for each hidden word on the main page. When a visitor clicks the word, the assigned text will be silently copied to their clipboard.</p>
+        </div>
+
+        <div class="words-grid" id="wordsGrid"></div>
+
+        <div class="save-bar">
+          <button class="btn-save" onclick="saveAll()">Save All Changes</button>
+          <span class="save-status" id="saveStatus"></span>
+        </div>
+      </div>
+
+      <!-- Settings Section -->
+      <div class="admin-section" id="sectionSettings" style="display:none;">
+        <div class="section-header">
+          <h2>Settings</h2>
+          <p>Configure admin panel options.</p>
+        </div>
+
+        <div class="settings-card">
+          <h3>Change Password</h3>
+          <div class="settings-row">
+            <label>Current Password</label>
+            <input type="password" id="currentPass" placeholder="Current password">
+          </div>
+          <div class="settings-row">
+            <label>New Password</label>
+            <input type="password" id="newPass" placeholder="New password">
+          </div>
+          <div class="settings-row">
+            <label>Confirm New Password</label>
+            <input type="password" id="confirmPass" placeholder="Confirm new password">
+          </div>
+          <button class="btn-save" onclick="changePassword()">Update Password</button>
+          <span class="save-status" id="passStatus"></span>
+        </div>
+
+        <div class="settings-card">
+          <h3>Reset All Data</h3>
+          <p>Clear all clipboard text assignments for hidden words.</p>
+          <button class="btn-danger" onclick="resetAll()">Reset All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
