@@ -42,6 +42,7 @@
     <div class="admin-sidebar">
       <h3>Navigation</h3>
       <a href="#" class="admin-nav-link active" onclick="showSection('words')">Hidden Words</a>
+      <a href="#" class="admin-nav-link" onclick="showSection('messages')">Messages</a>
       <a href="#" class="admin-nav-link" onclick="showSection('settings')">Settings</a>
     </div>
 
@@ -58,6 +59,22 @@
         <div class="save-bar">
           <button class="btn-save" onclick="saveAll()">Save Changes</button>
           <span class="save-status" id="saveStatus"></span>
+        </div>
+      </div>
+
+      <!-- Messages Section -->
+      <div class="admin-section" id="sectionMessages" style="display:none;">
+        <div class="section-header">
+          <h2>Messages</h2>
+          <p>Incoming messages from the dead drop field on the main page. Read-only.</p>
+        </div>
+
+        <div class="messages-list" id="messagesList">
+          <p class="msg-empty">No messages yet.</p>
+        </div>
+
+        <div class="save-bar">
+          <button class="btn-danger" onclick="clearMessages()">Clear All Messages</button>
         </div>
       </div>
 

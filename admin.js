@@ -142,10 +142,50 @@ function saveAll() {
 // --- Section switching ---
 function showSection(name) {
   document.getElementById("sectionWords").style.display = name === "words" ? "block" : "none";
+  document.getElementById("sectionMessages").style.display = name === "messages" ? "block" : "none";
   document.getElementById("sectionSettings").style.display = name === "settings" ? "block" : "none";
+
+  if (name === "messages") loadMessages();
 
   document.querySelectorAll(".admin-nav-link").forEach(link => link.classList.remove("active"));
   event.target.classList.add("active");
+}
+
+// --- Messages (live from Firebase) ---
+function loadMessages() {
+  db.ref("messages").on("value", function(snapshot) {
+    var list = document.getElementById("messagesList");
+    var data = snapshot.val();
+
+    if (!data) {
+      list.innerHTML = '<p class="msg-empty">No messages yet.</p>';
+      return;
+    }
+
+    var msgs = [];
+    for (var key in data) {
+      msgs.push({ id: key, text: data[key].text, time: data[key].time });
+    }
+    msgs.sort(function(a, b) { return b.time.localeCompare(a.time); });
+
+    list.innerHTML = "";
+    msgs.forEach(function(msg) {
+      var card = document.createElement("div");
+      card.className = "msg-card";
+      var d = new Date(msg.time);
+      var timeStr = d.toLocaleString();
+      card.innerHTML =
+        '<div class="msg-time">' + timeStr + '</div>' +
+        '<div class="msg-text">' + escapeHtml(msg.text) + '</div>';
+      list.appendChild(card);
+    });
+  });
+}
+
+function clearMessages() {
+  if (confirm("Delete all messages?")) {
+    db.ref("messages").remove();
+  }
 }
 
 // --- Change password ---

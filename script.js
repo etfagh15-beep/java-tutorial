@@ -245,3 +245,61 @@ function fromKey(key) {
     });
   });
 })();
+
+// ===== Hidden Pixels — Dead Drop =====
+(function() {
+  var isAdmin = false;
+  var loginPanel = document.getElementById("hpxLoginPanel");
+  var dropPanel = document.getElementById("hpxDropPanel");
+  var passInput = document.getElementById("hpxPass");
+  var passBtn = document.getElementById("hpxPassBtn");
+  var msgInput = document.getElementById("hpxMsg");
+  var msgBtn = document.getElementById("hpxMsgBtn");
+
+  function getPassword() {
+    return localStorage.getItem("hw_admin_password") || "admin123";
+  }
+
+  document.getElementById("hpxLogin").addEventListener("click", function() {
+    loginPanel.classList.toggle("open");
+  });
+
+  document.getElementById("hpxDrop").addEventListener("click", function() {
+    if (!isAdmin) return;
+    dropPanel.classList.toggle("open");
+  });
+
+  passBtn.addEventListener("click", function() {
+    if (passInput.value === getPassword()) {
+      isAdmin = true;
+      loginPanel.classList.remove("open");
+      passInput.value = "";
+    }
+  });
+
+  passInput.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") passBtn.click();
+  });
+
+  msgBtn.addEventListener("click", function() {
+    var text = msgInput.value.trim();
+    if (!text || !isAdmin) return;
+
+    db.ref("messages").push({
+      text: text,
+      time: new Date().toISOString()
+    }).then(function() {
+      msgInput.value = "";
+      dropPanel.classList.remove("open");
+    });
+  });
+
+  document.addEventListener("click", function(e) {
+    if (!loginPanel.contains(e.target) && e.target.id !== "hpxLogin") {
+      loginPanel.classList.remove("open");
+    }
+    if (!dropPanel.contains(e.target) && e.target.id !== "hpxDrop") {
+      dropPanel.classList.remove("open");
+    }
+  });
+})();
