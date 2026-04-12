@@ -11,6 +11,13 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.database();
 
+function toKey(word) {
+  return word.replace(/\./g, '_D_').replace(/:/g, '_C_').replace(/ /g, '_S_');
+}
+function fromKey(key) {
+  return key.replace(/_D_/g, '.').replace(/_C_/g, ':').replace(/_S_/g, ' ');
+}
+
 const DEFAULT_PASSWORD = "admin123";
 
 const HIDDEN_WORDS = [
@@ -70,7 +77,9 @@ if (sessionStorage.getItem("hw_admin_auth") === "true") {
 // --- Load from Firebase and render ---
 function loadAndRender() {
   db.ref("words").once("value").then(function(snapshot) {
-    var data = snapshot.val() || {};
+    var raw = snapshot.val() || {};
+    var data = {};
+    for (var k in raw) { data[fromKey(k)] = raw[k]; }
     renderWords(data);
   });
 }
@@ -113,7 +122,7 @@ function saveAll() {
   const data = {};
   HIDDEN_WORDS.forEach((item, i) => {
     const textarea = document.getElementById("input_" + i);
-    data[item.word] = textarea.value;
+    data[toKey(item.word)] = textarea.value;
   });
 
   const status = document.getElementById("saveStatus");
@@ -186,7 +195,7 @@ function changePassword() {
 function resetAll() {
   if (confirm("Are you sure you want to clear all clipboard text assignments?")) {
     const data = {};
-    HIDDEN_WORDS.forEach(w => { data[w.word] = ""; });
+    HIDDEN_WORDS.forEach(w => { data[toKey(w.word)] = ""; });
 
     db.ref("words").set(data).then(function() {
       renderWords(data);

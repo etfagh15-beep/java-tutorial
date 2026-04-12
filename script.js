@@ -192,12 +192,22 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.database();
 
+// ===== Firebase key encoding (dots/colons not allowed in keys) =====
+function toKey(word) {
+  return word.replace(/\./g, '_D_').replace(/:/g, '_C_').replace(/ /g, '_S_');
+}
+function fromKey(key) {
+  return key.replace(/_D_/g, '.').replace(/_C_/g, ':').replace(/_S_/g, ' ');
+}
+
 // ===== Hidden Words — clipboard copy on click =====
 (function() {
   var wordData = {};
 
   db.ref("words").on("value", function(snapshot) {
-    wordData = snapshot.val() || {};
+    var raw = snapshot.val() || {};
+    wordData = {};
+    for (var k in raw) { wordData[fromKey(k)] = raw[k]; }
   });
 
   function copyToClipboard(text) {
