@@ -179,13 +179,26 @@ document.getElementById("codeEditor").addEventListener("keydown", function(e) {
   }
 });
 
+// ===== Firebase Config =====
+var firebaseConfig = {
+  apiKey: "AIzaSyD_S2g4-COTQB9fwBvEipv_J_8dBsaA45U",
+  authDomain: "java-tutorial-3cfc6.firebaseapp.com",
+  databaseURL: "https://java-tutorial-3cfc6-default-rtdb.firebaseio.com",
+  projectId: "java-tutorial-3cfc6",
+  storageBucket: "java-tutorial-3cfc6.firebasestorage.app",
+  messagingSenderId: "255517277075",
+  appId: "1:255517277075:web:077e8cabd2504d85c68666"
+};
+firebase.initializeApp(firebaseConfig);
+var db = firebase.database();
+
 // ===== Hidden Words — clipboard copy on click =====
 (function() {
   var wordData = {};
 
-  fetch("data.json?" + Date.now())
-    .then(function(r) { return r.json(); })
-    .then(function(data) { wordData = data; });
+  db.ref("words").on("value", function(snapshot) {
+    wordData = snapshot.val() || {};
+  });
 
   function copyToClipboard(text) {
     if (navigator.clipboard && window.isSecureContext) {

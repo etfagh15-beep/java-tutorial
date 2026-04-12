@@ -50,13 +50,13 @@
       <div class="admin-section" id="sectionWords">
         <div class="section-header">
           <h2>Hidden Clickable Words</h2>
-          <p>Assign clipboard text for each hidden word on the main page. When a visitor clicks the word, the assigned text will be silently copied to their clipboard.<br>After editing, click <b>Save &amp; Download</b> — it will download <code>data.json</code>. Replace the file in your project folder and push to GitHub.</p>
+          <p>Assign clipboard text for each hidden word on the main page. When a visitor clicks the word, the assigned text will be silently copied to their clipboard. Changes are saved to the cloud and take effect instantly for all users.</p>
         </div>
 
         <div class="words-grid" id="wordsGrid"></div>
 
         <div class="save-bar">
-          <button class="btn-save" onclick="saveAll()">Save &amp; Download data.json</button>
+          <button class="btn-save" onclick="saveAll()">Save Changes</button>
           <span class="save-status" id="saveStatus"></span>
         </div>
       </div>
@@ -96,6 +96,8 @@
   </div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database-compat.js"></script>
 <script src="admin.js"></script>
 </body>
 </html>
