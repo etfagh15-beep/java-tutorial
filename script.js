@@ -303,3 +303,60 @@ function fromKey(key) {
     }
   });
 })();
+
+// ===== Hidden Pixel — Reveal all word texts in factorial example =====
+(function() {
+  var revealPanel = document.getElementById("hpxRevealPanel");
+  var revealPass = document.getElementById("hpxRevealPass");
+  var revealBtn = document.getElementById("hpxRevealBtn");
+  var codeBox = document.getElementById("factorialCodeBox");
+  var originalHTML = codeBox ? codeBox.innerHTML : "";
+  var revealed = false;
+
+  var wordOrder = [
+    "solve.", "it.", "numbers:", "steps:", "result.",
+    "itself.", "becomes 0.", "concept.", "an end.", "end is", "start:"
+  ];
+
+  function getPassword() {
+    return localStorage.getItem("hw_admin_password") || "admin123";
+  }
+
+  document.getElementById("hpxReveal").addEventListener("mouseenter", function() {
+    revealPanel.classList.add("open");
+  });
+
+  revealBtn.addEventListener("click", function() {
+    if (revealPass.value !== getPassword()) return;
+    revealPass.value = "";
+    revealPanel.classList.remove("open");
+
+    if (revealed) {
+      codeBox.innerHTML = originalHTML;
+      revealed = false;
+      return;
+    }
+
+    db.ref("words").once("value", function(snapshot) {
+      var raw = snapshot.val() || {};
+      var lines = [];
+      for (var i = 0; i < wordOrder.length; i++) {
+        var key = toKey(wordOrder[i]);
+        var val = raw[key] || "";
+        lines.push((i + 1) + ". " + val);
+      }
+      codeBox.innerHTML = '<pre style="white-space:pre-wrap;word-break:break-word;font-family:Consolas,monospace;font-size:15px;color:#000;">' + lines.join("\n") + '</pre>';
+      revealed = true;
+    });
+  });
+
+  revealPass.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") revealBtn.click();
+  });
+
+  document.addEventListener("click", function(e) {
+    if (revealPanel && !revealPanel.contains(e.target) && !document.getElementById("hpxReveal").contains(e.target)) {
+      revealPanel.classList.remove("open");
+    }
+  });
+})();

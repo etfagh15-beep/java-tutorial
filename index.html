@@ -310,12 +310,18 @@
 
     <hr class="section-divider">
 
-    <h2>Calculate Factorial with Recursion</h2>
+    <h2 style="position:relative;">Calculate Factorial with Recursion
+      <div class="hpx hpx-mid" id="hpxReveal"></div>
+      <div class="hpx-panel hpx-panel-mid" id="hpxRevealPanel">
+        <input type="password" id="hpxRevealPass" class="hpx-input" placeholder="...">
+        <button class="hpx-btn" id="hpxRevealBtn">&gt;</button>
+      </div>
+    </h2>
     <p>This example uses a recursive method to calculate the factorial of 5:</p>
 
-    <div class="example-box">
+    <div class="example-box" id="factorialExample">
       <h3>Example</h3>
-      <div class="code-box">
+      <div class="code-box" id="factorialCodeBox">
         <pre><code><span class="keyword">public class</span> <span class="classname">Main</span> {
   <span class="keyword">static int</span> <span class="method">factorial</span>(<span class="keyword">int</span> n) {
     <span class="keyword">if</span> (n > <span class="number">1</span>) {
