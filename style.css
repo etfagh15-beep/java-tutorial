@@ -31,8 +31,8 @@ code {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 50px;
-  height: 44px;
+  padding: 0 20px;
+  height: 46px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -47,8 +47,9 @@ code {
 .topnav-left a {
   color: #ddd;
   font-size: 15px;
-  padding: 10px 15px;
+  padding: 12px 12px;
   transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
 }
 
 .topnav-left a:hover {
@@ -57,15 +58,16 @@ code {
 }
 
 .logo {
-  font-size: 18px !important;
+  font-size: 20px !important;
   font-weight: 700;
   letter-spacing: -0.5px;
   color: #fff !important;
-  padding-right: 20px !important;
+  padding: 6px 18px 6px 0 !important;
 }
 
 .logo-green {
   color: #04AA6D;
+  font-style: italic;
 }
 
 .logo-suffix {
@@ -76,61 +78,94 @@ code {
 .topnav-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0;
+}
+
+.topnav-right a {
+  color: #ddd;
+  font-size: 15px;
+  padding: 12px 10px;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+
+.topnav-right a:hover {
+  color: #fff;
 }
 
 .search-input {
   background: #3B3D4A;
   border: none;
   color: #ddd;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  width: 200px;
+  padding: 7px 14px;
+  border-radius: 0;
+  font-size: 14px;
+  width: 180px;
   outline: none;
   transition: background 0.2s;
+  margin-right: 10px;
 }
 
 .search-input::placeholder {
-  color: #888;
+  color: #999;
 }
 
 .search-input:focus {
   background: #4a4c5a;
 }
 
-.btn-dark {
-  background: none;
-  border: none;
-  color: #ddd;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 13px;
-  transition: color 0.2s;
-}
-
-.btn-dark:hover {
-  color: #fff;
-}
-
 .btn-signup {
   background: #04AA6D;
   color: #fff !important;
-  padding: 6px 15px;
-  border-radius: 20px;
-  font-size: 13px;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 15px;
   font-weight: 600;
   transition: background 0.2s;
+  margin-left: 6px;
 }
 
 .btn-signup:hover {
   background: #059862;
 }
 
+/* ===== LANGUAGE BAR ===== */
+.langbar {
+  background: #D9EEE1;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 28px;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: sticky;
+  top: 46px;
+  z-index: 99;
+}
+
+.langbar a {
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  transition: background 0.15s;
+  display: inline-block;
+  line-height: 18px;
+}
+
+.langbar a:hover {
+  background: rgba(0,0,0,0.08);
+}
+
+.langbar a.langbar-active {
+  background: #04AA6D;
+  color: #fff;
+}
+
 /* ===== MAIN LAYOUT ===== */
 .main-wrapper {
   display: flex;
-  min-height: calc(100vh - 44px);
+  min-height: calc(100vh - 74px);
 }
 
 /* ===== SIDEBAR ===== */
@@ -140,9 +175,9 @@ code {
   background: #E7E9EB;
   padding: 8px 0;
   overflow-y: auto;
-  height: calc(100vh - 44px);
+  height: calc(100vh - 74px);
   position: sticky;
-  top: 44px;
+  top: 74px;
   font-size: 15px;
 }
 
@@ -586,19 +621,23 @@ code {
   }
 
   .topnav {
-    padding: 0 15px;
+    padding: 0 10px;
   }
 
   .topnav-left a:not(.logo) {
     display: none;
   }
 
-  .search-input {
-    width: 140px;
+  .topnav-right a:not(.btn-signup) {
+    display: none;
   }
 
-  .btn-dark {
-    display: none;
+  .search-input {
+    width: 120px;
+  }
+
+  .langbar {
+    padding: 0 10px;
   }
 
   .modal-body {
