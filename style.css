@@ -230,7 +230,8 @@ code {
   min-width: 230px;
   background: #E7E9EB;
   padding: 20px 0 0;
-  overflow-y: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: calc(100vh - 89px);
   position: sticky;
   top: 89px;
@@ -238,20 +239,21 @@ code {
 }
 
 .sidebar h2 {
-  font-size: 26px;
+  font-size: 21px;
   font-weight: 400;
   color: #000;
-  padding: 0 0 0 16px;
+  padding-left: 16px;
   margin: -4px 0 4px 0;
+  width: 204px;
 }
 
 .sidebar a {
   display: block;
-  padding: 3px 2px 3px 24px;
-  font-size: 17px;
+  padding: 2px 1px 1px 16px;
+  font-size: 15px;
   font-family: 'Segoe UI', Arial, sans-serif;
   color: #000;
-  transition: background 0.1s;
+  text-decoration: none;
 }
 
 .sidebar a:hover,
