@@ -74,7 +74,7 @@ code {
 }
 
 .logo-img {
-  height: 36px;
+  height: 44px;
   width: auto;
   display: block;
 }
@@ -148,30 +148,24 @@ code {
 .btn-signup {
   background: #04AA6D;
   color: #fff !important;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
   width: 95px;
   height: 40px;
-  justify-content: center;
   border-radius: 8px;
   font-size: 16px;
   line-height: 22px;
-  font-weight: 400;
+  font-weight: 700;
   transition: background 0.2s;
   margin-left: 14px;
   white-space: nowrap;
+  text-align: center;
 }
 
 .btn-signup:hover {
   background: #059862 !important;
   color: #fff !important;
-}
-
-.signin-icon {
-  position: relative;
-  right: 2px;
-  top: 1px;
 }
 
 /* ===== LANGUAGE BAR ===== */
@@ -267,10 +261,122 @@ code {
   color: #fff !important;
 }
 
+/* ===== RIGHT SIDEBAR ===== */
+.right-sidebar {
+  width: 210px;
+  min-width: 210px;
+  text-align: center;
+  padding: 16px 16px 0 0;
+}
+
+.right-sidebar a {
+  text-decoration: none;
+}
+
+.sidesection {
+  margin-bottom: 32px;
+}
+
+.cert-ad-inner {
+  background: #fff;
+  border-radius: 5px;
+  padding: 24px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.cert-ad-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.cert-ad-logo {
+  height: 40px;
+}
+
+.cert-ad-lang-icon {
+  height: 44px;
+}
+
+.cert-ad-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #000;
+  text-align: left;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.cert-ad-desc {
+  font-size: 14px;
+  color: #777;
+  text-align: left;
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+
+.cert-ad-price {
+  font-size: 36px;
+  font-weight: 700;
+  color: #04AA6D;
+  text-align: left;
+  margin: 0 0 16px;
+}
+
+.cert-ad-btn {
+  display: block;
+  background: #04AA6D;
+  color: #fff !important;
+  padding: 14px 0;
+  border-radius: 30px;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.cert-ad-btn:hover {
+  background: #059862;
+}
+
+.side-heading {
+  font-size: 17px;
+  font-weight: 400;
+  color: #04AA6D;
+  margin-bottom: 8px;
+}
+
+.side-heading a {
+  color: #04AA6D;
+}
+
+.side-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 22px;
+}
+
+.social-icons a {
+  color: #282A35;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+
+.social-icons a:hover {
+  color: #04AA6D;
+}
+
 /* ===== MAIN CONTENT ===== */
 .main-content {
   flex: 1;
-  max-width: 1050px;
+  min-width: 0;
   padding: 20px 60px 40px;
   position: relative;
 }
@@ -665,6 +771,10 @@ code {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
   .sidebar {
+    display: none;
+  }
+
+  .right-sidebar {
     display: none;
   }
 
