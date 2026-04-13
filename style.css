@@ -31,8 +31,8 @@ code {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  height: 46px;
+  padding: 0 16px;
+  height: 50px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -47,7 +47,7 @@ code {
 .topnav-left a {
   color: #ddd;
   font-size: 15px;
-  padding: 12px 12px;
+  padding: 14px 10px;
   transition: background 0.15s, color 0.15s;
   white-space: nowrap;
 }
@@ -58,21 +58,23 @@ code {
 }
 
 .logo {
-  font-size: 20px !important;
+  font-size: 28px !important;
   font-weight: 700;
-  letter-spacing: -0.5px;
+  letter-spacing: -1px;
   color: #fff !important;
-  padding: 6px 18px 6px 0 !important;
+  padding: 6px 12px 6px 0 !important;
+  font-style: italic !important;
 }
 
 .logo-green {
   color: #04AA6D;
-  font-style: italic;
 }
 
 .logo-suffix {
   font-weight: 400;
-  opacity: 0.7;
+  font-size: 18px;
+  font-style: normal;
+  opacity: 0.6;
 }
 
 .topnav-right {
@@ -84,7 +86,7 @@ code {
 .topnav-right a {
   color: #ddd;
   font-size: 15px;
-  padding: 12px 10px;
+  padding: 14px 10px;
   transition: color 0.15s;
   white-space: nowrap;
 }
@@ -94,16 +96,16 @@ code {
 }
 
 .search-input {
-  background: #3B3D4A;
-  border: none;
-  color: #ddd;
-  padding: 7px 14px;
-  border-radius: 0;
+  background: transparent;
+  border: 1px solid #999;
+  color: #fff;
+  padding: 6px 30px 6px 12px;
+  border-radius: 20px;
   font-size: 14px;
-  width: 180px;
+  width: 220px;
   outline: none;
-  transition: background 0.2s;
-  margin-right: 10px;
+  transition: border-color 0.2s;
+  margin-right: 12px;
 }
 
 .search-input::placeholder {
@@ -111,18 +113,18 @@ code {
 }
 
 .search-input:focus {
-  background: #4a4c5a;
+  border-color: #fff;
 }
 
 .btn-signup {
   background: #04AA6D;
   color: #fff !important;
-  padding: 8px 20px;
+  padding: 9px 26px;
   border-radius: 25px;
   font-size: 15px;
   font-weight: 600;
   transition: background 0.2s;
-  margin-left: 6px;
+  margin-left: 4px;
 }
 
 .btn-signup:hover {
@@ -131,30 +133,33 @@ code {
 
 /* ===== LANGUAGE BAR ===== */
 .langbar {
-  background: #D9EEE1;
+  background: #282A35;
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  height: 28px;
+  padding: 0 16px;
+  height: 30px;
   overflow-x: auto;
   white-space: nowrap;
   position: sticky;
-  top: 46px;
+  top: 50px;
   z-index: 99;
+  border-top: 1px solid #40424d;
 }
 
 .langbar a {
-  color: #000;
+  color: #ccc;
   font-size: 12px;
   font-weight: 600;
-  padding: 5px 12px;
+  padding: 6px 14px;
   transition: background 0.15s;
   display: inline-block;
   line-height: 18px;
+  letter-spacing: 0.3px;
 }
 
 .langbar a:hover {
-  background: rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
 }
 
 .langbar a.langbar-active {
@@ -165,7 +170,7 @@ code {
 /* ===== MAIN LAYOUT ===== */
 .main-wrapper {
   display: flex;
-  min-height: calc(100vh - 74px);
+  min-height: calc(100vh - 80px);
 }
 
 /* ===== SIDEBAR ===== */
@@ -175,9 +180,9 @@ code {
   background: #E7E9EB;
   padding: 8px 0;
   overflow-y: auto;
-  height: calc(100vh - 74px);
+  height: calc(100vh - 80px);
   position: sticky;
-  top: 74px;
+  top: 80px;
   font-size: 15px;
 }
 
