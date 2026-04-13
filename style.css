@@ -58,23 +58,15 @@ code {
 }
 
 .logo {
-  font-size: 28px !important;
-  font-weight: 700;
-  letter-spacing: -1px;
-  color: #fff !important;
-  padding: 6px 12px 6px 0 !important;
-  font-style: italic !important;
+  padding: 4px 12px 4px 0 !important;
+  display: flex;
+  align-items: center;
 }
 
-.logo-green {
-  color: #04AA6D;
-}
-
-.logo-suffix {
-  font-weight: 400;
-  font-size: 18px;
-  font-style: normal;
-  opacity: 0.6;
+.logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
 }
 
 .topnav-right {
