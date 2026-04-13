@@ -87,40 +87,80 @@ code {
   color: #fff;
 }
 
+.search-wrapper {
+  position: relative;
+  display: block;
+  width: 175px;
+  margin-right: 8px;
+}
+
 .search-input {
-  background: transparent;
-  border: 1px solid #999;
-  color: #fff;
-  padding: 6px 30px 6px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-  width: 220px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.25) !important;
+  color: #222;
+  padding: 5px 40px 5px 15px;
+  border-radius: 25px;
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
   outline: none;
-  transition: border-color 0.2s;
-  margin-right: 12px;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 .search-input::placeholder {
-  color: #999;
+  color: #555;
+  font-style: italic;
 }
 
-.search-input:focus {
-  border-color: #fff;
+.search-input:focus-visible {
+  outline: #04aa6d solid 3px;
+}
+
+.search-btn {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.search-btn svg {
+  width: 18px;
+  height: 18px;
+  color: #000;
 }
 
 .btn-signup {
   background: #04AA6D;
   color: #fff !important;
-  padding: 9px 26px;
-  border-radius: 25px;
-  font-size: 15px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 95px;
+  height: 40px;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
   transition: background 0.2s;
-  margin-left: 4px;
+  margin-left: 14px;
+  white-space: nowrap;
 }
 
 .btn-signup:hover {
-  background: #059862;
+  background: #059862 !important;
+  color: #fff !important;
+}
+
+.signin-icon {
+  position: relative;
+  right: 2px;
+  top: 1px;
 }
 
 /* ===== LANGUAGE BAR ===== */
@@ -214,24 +254,24 @@ code {
 }
 
 .main-content h1 {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-size: 42px;
+  font-weight: 400;
+  margin: 10px 0;
   color: #000;
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 .main-content h2 {
-  font-size: 25px;
-  font-weight: 700;
-  margin: 20px 0 10px;
+  font-size: 32px;
+  font-weight: 400;
+  margin: 10px 0;
   color: #000;
 }
 
 .main-content h3 {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 15px 0 5px;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 10px 0 5px;
 }
 
 .main-content p {
@@ -260,26 +300,19 @@ code {
 
 .btn-nav {
   display: inline-block;
-  padding: 8px 18px;
-  font-size: 15px;
-  transition: opacity 0.15s;
+  padding: 8px 19px;
+  font-size: 18px;
+  font-family: 'Source Sans Pro', 'Segoe UI', Arial, sans-serif;
+  border: 1px solid #04AA6D;
+  border-radius: 5px;
+  background-color: #04AA6D;
   color: #fff !important;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
-.btn-prev {
-  background: #282A35;
-}
-
-.btn-prev:hover {
-  opacity: 0.85;
-}
-
-.btn-next {
-  background: #04AA6D;
-}
-
-.btn-next:hover {
-  opacity: 0.85;
+.btn-nav:hover {
+  background-color: #059862 !important;
+  box-shadow: none;
 }
 
 /* ===== EXAMPLE BOX ===== */
@@ -629,8 +662,8 @@ code {
     display: none;
   }
 
-  .search-input {
-    width: 120px;
+  .search-wrapper {
+    width: 140px;
   }
 
   .langbar {
@@ -657,22 +690,22 @@ code {
     gap: 4px;
   }
 
-  .search-input {
-    width: 90px;
-    font-size: 12px;
+  .search-wrapper {
+    width: 100px;
   }
 
   .btn-signup {
-    padding: 5px 10px;
-    font-size: 12px;
+    width: 80px;
+    height: 36px;
+    font-size: 14px;
   }
 
   .main-content h1 {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .main-content h2 {
-    font-size: 22px;
+    font-size: 25px;
   }
 }
 
